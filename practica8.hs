@@ -14,7 +14,7 @@ existe xs ys f = or [f x | x <- xs]
 paraTodo :: [Int] -> [a] -> (Int -> [a] -> Bool)-> Bool
 paraTodo xs ys f = and [f x | x <- xs]
 
-f :: [a] -> Bool
+--f :: [a] -> Bool
 
 existeUnNMayA0 :: [Int] -> Bool
 existeUnNMayA0 xs = or [x > 10 | x <- xs]
