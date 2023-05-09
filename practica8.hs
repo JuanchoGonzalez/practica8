@@ -9,18 +9,31 @@ maj _ True True = True
 maj _ _ _       = False
 
 existe :: [Int] -> [a] -> (Int -> [a] -> Bool)-> Bool
-existe xs ys f = or [f x | x <- xs]
+existe xs ys f = or [f x ys | x <- xs]
 
 paraTodo :: [Int] -> [a] -> (Int -> [a] -> Bool)-> Bool
-paraTodo xs ys f = and [f x | x <- xs]
+paraTodo xs ys f = and [f x ys | x <- xs]
 
---f :: [a] -> Bool
+isEven :: (Eq a,Integral a) => Int -> [a] -> Bool 
+isEven i xs = mod (xs!!i) 2 == 0 
 
-existeUnNMayA0 :: [Int] -> Bool
-existeUnNMayA0 xs = or [x > 10 | x <- xs]
+productoria :: (Num a) => [Int] -> [a] -> (Int -> [a] -> a) -> a
+productoria xs [] f = 1
+productoria xs ys f = product [f x ys | x <- xs] 
 
-todosSonPos :: [Int] -> Bool
-todosSonPos xs = and [x > 0 | x <- xs]
+cuadrado :: (Num a) => Int -> [a] -> a
+cuadrado i xs = (xs!!i) ^ 2
+
+sumatoria :: (Num a) => [Int] -> [a] -> (Int -> [a] -> a) -> a
+sumatoria xs [] f = 0
+sumatoria xs ys f = sum [f x ys | x <- xs] 
+{-
+contatoria :: (Num a) => [Int] -> [a] -> (Int -> [a] -> Bool) -> Int
+contatoria xs [] f = 0
+contatoria xs ys f = length [f x ys | x <- ys] 
+-}
+
+-- ejemplos concretos con otro perfil
 
 sumatoriaPares :: [Int] -> Int 
 sumatoriaPares [] = 0 -- elemento neutro para la operacion suma
@@ -29,7 +42,6 @@ sumatoriaPares (x:xs) = sum [x | x <- xs, even x]
 productoriaDivisoresDe3 :: [Int] -> Int
 productoriaDivisoresDe3 [] = 1 -- elemento neutro para la operacion producto
 productoriaDivisoresDe3 xs = product [x | x <- xs, mod x 3 == 0]
-
 
 contatoriaImparesMayA15 :: [Int] -> Int
 contatoriaImparesMayA15 [] = 0 -- elemento neutro para la operacion contatoria
