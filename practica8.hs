@@ -39,6 +39,9 @@ contatoria xs [] f = 0
 contatoria xs ys f = length [f x ys | x <- ys] 
 -}
 
+contatoria' :: [Int] -> [a] -> (Int -> [a] -> Bool) -> Int
+contatoria' xs ys f = length [x | x <- xs, f x ys]
+
 -- ejemplos concretos con otro perfil
 
 sumatoriaPares :: [Int] -> Int 
