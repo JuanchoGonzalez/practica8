@@ -14,6 +14,12 @@ existe xs ys f = or [f x ys | x <- xs]
 paraTodo :: [Int] -> [a] -> (Int -> [a] -> Bool)-> Bool
 paraTodo xs ys f = and [f x ys | x <- xs]
 
+paraTodo2 :: [Int] -> [a] -> (Int -> [a] -> Bool)-> Bool
+paraTodo2 xs ys f = foldr (&&) True [f x ys | x <- xs]
+
+isEven2 :: Int -> [Int] -> Bool 
+isEven2 i xs = xs !! i `mod` 2 == 0 
+
 isEven :: (Eq a,Integral a) => Int -> [a] -> Bool 
 isEven i xs = mod (xs!!i) 2 == 0 
 
